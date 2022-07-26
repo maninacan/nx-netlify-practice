@@ -1,5 +1,11 @@
 module.exports = {
-  onBuild: () => {
-    console.log('Hello world from the plugin!');
+  onPreBuild: ({ utils }) => {
+    const currentProject = 'client';
+    const projectHasChanged = false;
+    if (!projectHasChanged) {
+      utils.build.cancelBuild(
+        `Build was cancelled because ${currentProject} was not affected by the latest changes`
+      );
+    }
   }
 };
